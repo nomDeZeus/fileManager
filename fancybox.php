@@ -30,10 +30,30 @@ if($baseDir === $currentDir){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/fancy.css">
 </head>
 <body>
 
-    <h1>File Manager</h1>
+    <div id="header">
+        <h1 id="title">File Manager</h1>
+        <div id="icone">
+            <ul>
+                <li>
+                    <a href="./mkdir.php?iframe&dir=<?php echo $requestedDir; ?>" id="folder">
+                        <img src="img/New-Folder.png" alt="Create Folder" title="Cliquez pour créer un dossier" />
+                    </a>
+                </li>
+                <li><a href="">
+                        <img src="img/refresh.png" alt="Refresh" title="Cliquez pour raffraichir" />
+                    </a>
+                </li>
+                <li><a href="./file.php?iframe" id="file">
+                        <img src="img/New-File.png" alt="Create File" title="Cliquez pour créer un fichier" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <section>
         <header>
             <h1>Select File...</h1>
@@ -41,26 +61,26 @@ if($baseDir === $currentDir){
                 <?php
                 echo $printed.'/';
                 ?>
-                <ul>
-                    <li><a href="./mkdir.php?iframe&dir=<?php echo $requestedDir; ?>" id="folder">Create folder</a></li>
-                    <li><a href="">Refresh</a></li>
-                    <li><a href="./file.php?iframe" id="file">Add file</a></li>
-                </ul>
             </nav>
         </header>
-        <?php
-            foreach ($dirs as $dir){
-                ?>
-                <div class="<?php echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>">
-                    <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>">
+        <ul>
+            <?php
+                foreach ($dirs as $dir){
+                    ?>
+            <li>
+                <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>">
+                    <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
+                    <div class="descr-ico">
                         <?php
-                            echo ($dir == '..')?'parent':$dir;
+                        echo ($dir == '..')?'parent':$dir;
                         ?>
-                    </a>
-                </div>
-                <?php
-            }
-        ?>
+                    </div>
+                </a>
+            </li>
+                    <?php
+                }
+            ?>
+        </ul>
     </section>
 
 
