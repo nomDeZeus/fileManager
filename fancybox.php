@@ -47,7 +47,7 @@ if($baseDir === $currentDir){
                         <img src="img/refresh.png" alt="Refresh" title="Cliquez pour raffraichir" />
                     </a>
                 </li>
-                <li><a href="./file.php?iframe" id="file">
+                <li><a href="./file.php?iframe&dir=<?php echo $requestedDir; ?>" id="file">
                         <img src="img/New-File.png" alt="Create File" title="Cliquez pour créer un fichier" />
                     </a>
                 </li>
@@ -68,7 +68,7 @@ if($baseDir === $currentDir){
                 foreach ($dirs as $dir){
                     ?>
             <li>
-                <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>">
+                <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>">
                     <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
                     <div class="descr-ico">
                         <?php
