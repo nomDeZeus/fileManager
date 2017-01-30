@@ -72,6 +72,7 @@
 
         }
     </style>
+    <link rel="stylesheet" href="css/fancy.css">
 </head>
 <body>
 <form action="posted_file.php" id="fileUpload" method="post">

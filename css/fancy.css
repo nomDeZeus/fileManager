@@ -1,5 +1,5 @@
 ul li{
-    display: inline-block;
+    display: inline-table;
     width: 64px;
     text-align: center;
 }
@@ -39,7 +39,6 @@ ul li{
 
 #icone
 {
-    width: 49%;
     float: right;
     display: inline-block;
     text-align: right;
@@ -47,4 +46,31 @@ ul li{
 
 .descr-ico{
     overflow: hidden;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.42857;
+    color: #fff;
+    background-color: #BCBCBC; }
+
+.btn-circle {
+
+    margin: 10px;
+    width: 12em;
+    height: 3em;
+    line-height: 1.428571429;
+    border-radius: 10px;
+    position: relative;
+    font-size: 0.8em;
+    font-family: 'Pacifico', cursive;
+}
+
+#drop-zone {
+    color:#ffffff;
+}
+
+h1 {
+    color: #666666;
 }
