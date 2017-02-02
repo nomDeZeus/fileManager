@@ -120,13 +120,22 @@ function closeAndRefresh(){
     $.fancybox.close();
     location.reload();
 }
-$(".file, .descr-ico").on('click', function (e) {
-    e.preventDefault();
-});
+
 $(".file").on('click', function (e) {
-    var uploader = new Uploader();
-    $('#'+uploader.idInput, window.parent.document).val($(this).parent().attr('data-path'));
+    e.preventDefault();
+    fillInput($(this));
 });
+$(".descr-ico").on('click', function (e) {
+    if($(this).prev().hasClass('file')){
+        e.preventDefault();
+        fillInput($(this));
+    }
+
+});
+function fillInput(obj){
+    var uploader = new Uploader();
+    $('#'+uploader.idInput, window.parent.document).val(obj.parent().attr('data-path'));
+}
 </script>
 </body>
 </html>
