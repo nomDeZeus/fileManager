@@ -18,12 +18,16 @@
 </head>
 <body>
 <a id="iframe" href="./fancybox.php">Lien vers une iframe</a>
+<input type="text" id="image">
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="js/uploader.js"></script>
 <script>
 $(document).ready(function() {
+    var uploader = new Uploader("image");
     $("#iframe").fancybox({
         'fitToView'         : false,
         'width'             : '75%',

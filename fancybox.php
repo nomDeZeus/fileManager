@@ -6,7 +6,8 @@
  * Time: 15:49
  */
 require_once ('includes/dir.php');
-$baseDir = realpath('uploads');
+require_once ('includes/const.php');
+$baseDir = realpath($uploadDir);
 $requestedDir = (isset($_GET['dir'])?$_GET['dir']:'');
 if(!($currentDir = dir_is_valid($requestedDir, $baseDir))){
     exit;
@@ -68,7 +69,7 @@ if($baseDir === $currentDir){
                 foreach ($dirs as $dir){
                     ?>
             <li>
-                <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>">
+                <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>" data-path="<?php echo $uploadDir.'/'.substr(getRelativePath($baseDir, $currentDir.'/'.$dir), 2); ?>">
                     <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
                     <div class="descr-ico">
                         <?php
@@ -89,6 +90,7 @@ if($baseDir === $currentDir){
         crossorigin="anonymous">
 </script>
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="js/uploader.js"></script>
 <script>
 $(document).ready(function() {
     $("#folder").fancybox({
@@ -116,6 +118,13 @@ function closeAndRefresh(){
     $.fancybox.close();
     location.reload();
 }
+$(".file, .descr-ico").on('click', function (e) {
+    e.preventDefault();
+});
+$(".file").on('click', function (e) {
+    var uploader = new Uploader();
+    $('#'+uploader.idInput, window.parent.document).val($(this).parent().attr('data-path'));
+});
 </script>
 </body>
 </html>
