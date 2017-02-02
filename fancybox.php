@@ -71,6 +71,7 @@ if($baseDir === $currentDir){
                 foreach ($dirs as $dir){
                     ?>
             <li>
+                <a class="croix" href="blank">✖</a>
                 <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>" data-path="<?php echo $uploadDir.'/'.substr(getRelativePath($baseDir, $currentDir.'/'.$dir), 2); ?>">
                     <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
                     <div class="descr-ico">
