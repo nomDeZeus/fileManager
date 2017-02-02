@@ -38,31 +38,33 @@ if($baseDir === $currentDir){
     <div id="header">
         <h1 id="title">File Manager</h1>
         <div id="icone">
-            <ul>
-                <li>
+            <table>
+                <td>
                     <a href="./mkdir.php?iframe&dir=<?php echo $requestedDir; ?>" id="folder">
-                        <img src="img/New-Folder.png" alt="Create Folder" title="Cliquez pour créer un dossier" />
+                        <img src="img/New-Folder.png" alt="Create Folder" title="Cliquez pour créer un dossier" height="35" width="35"/>
                     </a>
-                </li>
-                <li><a href="">
-                        <img src="img/refresh.png" alt="Refresh" title="Cliquez pour raffraichir" />
+                </td>
+                <td>
+                    <a href="">
+                        <img src="img/refresh.png" alt="Refresh" title="Cliquez pour raffraichir" height="35" width="35"/>
                     </a>
-                </li>
-                <li><a href="./file.php?iframe&dir=<?php echo $requestedDir; ?>" id="file">
-                        <img src="img/New-File.png" alt="Create File" title="Cliquez pour créer un fichier" />
+                </td>
+                <td>
+                    <a href="./file.php?iframe&dir=<?php echo $requestedDir; ?>" id="file">
+                        <img src="img/New-File.png" alt="Create File" title="Cliquez pour créer un fichier" height="35" width="35"/>
                     </a>
-                </li>
-            </ul>
+                </td>
+            </table>
         </div>
     </div>
     <section>
         <header>
             <h1>Select File...</h1>
-            <nav>
+            <nav><i>
                 <?php
                 echo $printed.'/';
                 ?>
-            </nav>
+                </i></nav>
         </header>
         <ul>
             <?php

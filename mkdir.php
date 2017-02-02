@@ -16,6 +16,7 @@ require_once ('includes/dir.php');
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/fancy.css">
 </head>
 <body>
 <?php
@@ -27,7 +28,7 @@ if(!isset($_POST['dirname'])) {
             <label for="dirname">Nom du dossier : </label>
             <input type="text" name="dirname" id="dirname">
             <input type="hidden" name="dir" value="<?php echo $dir; ?>">
-            <input type="submit" value="Créer">
+            <input class="btn btn-primary btn-circle" type="submit" value="Créer">
         </p>
     </form>
 <?php
