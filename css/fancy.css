@@ -8,12 +8,14 @@ ul li{
     background: url("../img/folder.png") no-repeat center;
     width: 64px;
     height: 64px;
+    margin-left : auto;
+    margin-right : auto;
 }
 
 .file{
     background: url("../img/file.png") no-repeat center;
-    margin-left : 15px;
-    margin-right : 15px;
+    margin-left : auto;
+    margin-right : auto;
     width: 64px;
     height: 64px;
 }
@@ -23,6 +25,8 @@ ul li{
     background-size: 50%;
     width: 50px;
     height: 50px;
+    margin-left : auto;
+    margin-right : auto;
 }
 
 .croix {
@@ -31,16 +35,19 @@ ul li{
 
 #header
 {
-    height: 100px;
+    height: 47px;
     width: 100%;
+    background-color: #777777;
 }
 
 #title
 {
     display: inline-block;
-    width: 49%;
+    width: 100%;
     margin-top: 0;
     vertical-align: top;
+    color: #c6a668;
+    text-align: center;
 }
 
 #icone
@@ -48,11 +55,15 @@ ul li{
     float: right;
     display: inline-block;
     text-align: right;
-    background-color: #666666
+    background-color: #666666;
+    border-radius: 10px;
 }
 
 .descr-ico{
+    width: 100px;
+    height: 45px;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 body {
@@ -80,4 +91,20 @@ body {
 
 h1 {
     color: #666666;
+}
+
+a.boxclose{
+    display:block;
+    float: right;
+    box-sizing:border-box;
+    width:16px;
+    height:16px;
+    border-width:1px;
+    border-style: solid;
+    border-color:black;
+    border-radius:100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%);
+    background-color:black;
+    box-shadow:0px 0px 5px 2px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
 }
