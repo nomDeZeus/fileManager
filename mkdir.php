@@ -37,6 +37,9 @@ if(!isset($_POST['dirname'])) {
     if($dirname === null or $dirname === false){
         exit;
     }
+    if(empty($dirname)){
+        $dirname = ".";
+    }
 
     $baseDir = realpath('uploads');
     $requestedDir = (isset($_POST['dir'])?$_POST['dir']:'');

@@ -8,7 +8,8 @@
 
 
 function dir_is_valid($requestedDir, $baseDir){
-    $requestedDir='uploads/'.$requestedDir;
+    require 'const.php';
+    $requestedDir=$uploadDir.'/'.$requestedDir;
     $currentDir = realpath($requestedDir);
     if($currentDir == false || strpos($currentDir, $baseDir) !== 0){
         echo 'Directory traversal';
