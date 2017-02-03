@@ -27,14 +27,15 @@ if(realpath($uploadDir.'/'.$currentDir) == false or strpos(realpath($uploadDir.'
     exit();
 }
 $files = $_FILES['files'];
-$error = array();
+$errors = array();
 
 foreach ($files['error'] as $key => $error){
     /*
      * Erreur dans le fichier uploadé
      * */
     if ($error !== 0){
-        array_push($error, $files['name'][$key]);
+        //array_push($error, $files['name'][$key]);
+        $errors[$files['name'][$key]] = 'File error';
         removeError($tab, $key);
         header('HTTP/1.1 500 File Error');
     }
@@ -53,13 +54,15 @@ foreach ($files['tmp_name'] as $key => $tmp_name){
     $name = $files['name'][$key];
     if(file_exists($uploadDir.'/'.$currentDir.'/'.$name)){
         header('HTTP/1.1 500 Upload Error : File already exists');
-        array_push($error, $files['name'][$key]);
+        $errors[$files['name'][$key]] = 'File already exists';
+        //array_push($error, $files['name'][$key]);
     }
     else if(!move_uploaded_file($tmp_name, $uploadDir.'/'.$currentDir.'/'.$name)){
         header('HTTP/1.1 500 Upload Error');
-        array_push($error, $files['name'][$key]);
+        $errors[$files['name'][$key]] = 'File cannot be uploaded';
+        //array_push($error, $files['name'][$key]);
     }
 }
 
 header('Content-Type: application/json');
-echo json_encode($error);//réponse contenant les erreurs
+echo json_encode($errors);//réponse contenant les erreurs

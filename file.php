@@ -150,7 +150,6 @@
     * */
     $(function changeDetection() {
        $('input:file').change(function () {
-           alert('changed');
             var $form = $("#fileUpload");
             var formdata = (window.FormData) ? new FormData($form[0]) : null;
             var data = (formdata !== null) ? formdata : $form.serialize();
