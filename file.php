@@ -77,9 +77,9 @@
 <body>
 <form action="posted_file.php" id="fileUpload" method="post">
     <div id="drop-zone">
-        Drop files here...
+        Glissez vos fichiers ici
         <div id="clickHere">
-            or click here..
+            Parcourir...
             <input type="file" name="files[]" id="file" multiple/>
         </div>
     </div>
@@ -161,7 +161,7 @@
                 processData: false,
                 data: data,
                 success: function (response) {
-                    alert('Files uploaded');
+                    alert('Fichier(s) transmis !');
                     parent.closeAndRefresh();
                 }
             });
@@ -191,7 +191,7 @@
            });
        }
        else{
-           console.log("Your browser does not support file API");
+           console.log("Votre navigateur n'est pas recent ou a jour");
        }
     });
 </script>
