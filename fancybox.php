@@ -7,13 +7,24 @@
  */
 require_once ('includes/dir.php');
 require_once ('includes/const.php');
+function pathFromUploadRoot($pathArray, $index){
+    if(count($pathArray) <= $index){
+        return false;
+    }
+    $path = '';
+    for($i = 0; $i <= $index; $i++){
+        $path.=($pathArray[$i].'/');
+    }
+    return $path;
+}
 $baseDir = realpath($uploadDir);
 $requestedDir = (isset($_GET['dir'])?$_GET['dir']:'');
 if(!($currentDir = dir_is_valid($requestedDir, $baseDir))){
     exit;
 }
-$arr = explode(realpath('uploads'), $currentDir);
+$arr = explode(realpath($uploadDir), $currentDir);
 $printed = ($arr[1] == '')?'.':$arr[1];
+$explodedPath = explode('/', $printed);
 
 $dirs = scandir($currentDir);
 if($baseDir === $currentDir){
@@ -62,7 +73,15 @@ if($baseDir === $currentDir){
             <h1>Select File...</h1>
             <nav><i>
                 <?php
-                echo $printed.'/';
+                //echo $printed.'/';
+                //var_dump($explodedPath);
+                foreach ($explodedPath as $key => $value){
+                    //var_dump(pathFromUploadRoot($explodedPath, $key));
+                    ?>
+                    <a href="./fancybox.php?dir=<?php echo pathFromUploadRoot($explodedPath, $key); ?>"><?php echo $value; ?></a>
+                    <?php if($key !== count($explodedPath) - 1 && $key !== 0){ echo '>'; } ?>
+                    <?php
+                }
                 ?>
                 </i></nav>
         </header>
@@ -73,10 +92,7 @@ if($baseDir === $currentDir){
             <li>
                 <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>" data-path="<?php echo $uploadDir.'/'.substr(getRelativePath($baseDir, $currentDir.'/'.$dir), 2); ?>">
                     <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
-                    <div class="descr-ico">
-                        <?php
-                        echo ($dir == '..')?'parent':$dir;
-                        ?>
+                    <div class="descr-ico"><?php echo ($dir == '..')?'parent':$dir; ?>
                     </div>
                 </a>
             </li>
