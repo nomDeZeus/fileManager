@@ -92,7 +92,7 @@ if($baseDir === $currentDir){
                 foreach ($dirs as $dir){
                     ?>
             <li>
-                <a href="blank" class="boxclose"></a>
+                <a href="delete.php?dir=<?php echo $printed ?>&dirname=<?php echo $dir ?>" class="boxclose"></a>
                 <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>" data-path="<?php echo $uploadDir.'/'.substr(getRelativePath($baseDir, $currentDir.'/'.$dir), 2); ?>">
                     <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
                     <div class="descr-ico"><?php echo ($dir == '..')?'parent':$dir; ?>
@@ -134,9 +134,32 @@ $(document).ready(function() {
         'transitionOut'     : 'elastic',
         'type'              : 'iframe'
     });
+    $(".boxclose").on('click', function (e) {
+        e.preventDefault();
+        //console.log(getURLParameter($(this).attr('href'), 'dirname'));
+        $.ajax({
+            method: 'get',
+            url: 'delete.php',
+            data: {
+                'dir': getURLParameter($(this).attr('href'), 'dir'),
+                'dirname': getURLParameter($(this).attr('href'), 'dirname')
+            }
+        }
+        ).done(function () {
+            refresh();
+        }).fail(function () {
+            alert("Impossible de supprimer");
+        });
+    });
 });
+function getURLParameter(url, name) {
+    return (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1];
+}
 function closeAndRefresh(){
     $.fancybox.close();
+    location.reload();
+}
+function refresh(){
     location.reload();
 }
 

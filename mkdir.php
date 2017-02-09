@@ -7,6 +7,7 @@
  */
 
 require_once ('includes/dir.php');
+require_once ('includes/const.php');
 ?>
 <!doctype html>
 <html lang="fr">
@@ -41,7 +42,7 @@ if(!isset($_POST['dirname'])) {
         $dirname = ".";
     }
 
-    $baseDir = realpath('uploads');
+    $baseDir = realpath($uploadDir);
     $requestedDir = (isset($_POST['dir'])?$_POST['dir']:'');
     if(!($currentDir = dir_is_valid($requestedDir, $baseDir))){
         exit;

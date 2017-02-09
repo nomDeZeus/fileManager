@@ -23,7 +23,7 @@ if($currentDir == null or $currentDir == false){
     exit();
 }
 if(realpath($uploadDir.'/'.$currentDir) == false or strpos(realpath($uploadDir.'/'.$currentDir), realpath($uploadDir)) !== 0){
-    header('HTTP/1.1 500 File Name Error');
+    header('HTTP/1.1 403 File Name Error');
     exit();
 }
 $files = $_FILES['files'];
@@ -65,4 +65,7 @@ foreach ($files['tmp_name'] as $key => $tmp_name){
 }
 
 header('Content-Type: application/json');
+if(count($errors) == 0){
+    header('HTTP/1.1 201 Files Uploaded');
+}
 echo json_encode($errors);//réponse contenant les erreurs
