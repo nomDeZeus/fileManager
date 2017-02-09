@@ -48,7 +48,7 @@ $("#button").fancybox({
 ```
 Lien associé au JavaScript ci-dessus:
 ```html
-<a id="button" href="fancybox.php?iframe">Open iframe</a>
+<a id="button" href="uploader/fancybox.php?iframe">Open iframe</a>
 ```
 ####Spécifier l'id de l'input à remplir
 ```javascript
