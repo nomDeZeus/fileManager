@@ -41,6 +41,8 @@ if($baseDir === $currentDir){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lemonada" rel="stylesheet">
     <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css">
     <link rel="stylesheet" href="css/fancy.css">
 </head>
@@ -53,17 +55,17 @@ if($baseDir === $currentDir){
                 <tr>
                     <td>
                         <a href="./mkdir.php?iframe&dir=<?php echo $requestedDir; ?>" id="folder">
-                            <img src="img/New-Folder.png" alt="Create Folder" title="Cliquez pour créer un dossier" height="35" width="35"/>
+                            <img src="img/New-Folder.png" alt="Creer un dossier" title="Cliquez pour créer un dossier" height="40" width="40"/>
                         </a>
                     </td>
                     <td>
                         <a href="">
-                            <img src="img/refresh.png" alt="Refresh" title="Cliquez pour raffraichir" height="35" width="35"/>
+                            <img src="img/refresh.png" alt="Rafraichir" title="Cliquez pour raffraichir" height="40" width="40"/>
                         </a>
                     </td>
                     <td>
                         <a href="./file.php?iframe&dir=<?php echo $requestedDir; ?>" id="file">
-                            <img src="img/New-File.png" alt="Create File" title="Cliquez pour créer un fichier" height="35" width="35"/>
+                            <img src="img/New-File.png" alt="Rajouter un fichier" title="Cliquez pour rajouter un fichier" height="40" width="40"/>
                         </a>
                     </td>
                 </tr>
@@ -72,7 +74,7 @@ if($baseDir === $currentDir){
     </div>
     <section>
         <header>
-            <h1>Select File...</h1>
+            <h1>Choisir un fichier déjà importé:</h1>
             <nav><i>
                 <?php
                 //echo $printed.'/';

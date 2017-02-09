@@ -48,6 +48,7 @@ ul li{
     vertical-align: top;
     color: #c6a668;
     text-align: center;
+    font-family: 'Dancing Script', cursive;
 }
 
 #icone
@@ -67,7 +68,7 @@ ul li{
 }
 
 body {
-    font-family: "Dancing Script", cursive, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: cursive, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857;
     color: #fff;

@@ -47,12 +47,12 @@ if(!isset($_POST['dirname'])) {
     if(!($currentDir = dir_is_valid($requestedDir, $baseDir))){
         exit;
     }
-    set_error_handler(function() { /* ignore errors */echo 'wrong folder name'; exit; });
+    set_error_handler(function() { /* ignore errors */echo 'Erreur lors de la creation. Verifiez les doublons'; exit; });
     $create = mkdir($currentDir.'/'.$dirname);
     restore_error_handler();
 
     if(strpos(realpath($currentDir.'/'.$dirname), $baseDir) !== 0){
-        echo 'wrong folder name';
+        echo 'Erreur lors de la creation. Verifiez les doublons';
         unlink($currentDir.'/'.$dirname);
         exit;
     }
