@@ -35,7 +35,7 @@ La taille est donnée en octets **et doit être inférieure à celle indiquée d
 ###Lancer le file manager
 Donner les paramètres de la fancybox
 ```javascript
-$("#iframe").fancybox({
+$("#button").fancybox({
         'fitToView'         : false,
         'width'             : '75%',
         'height'            : '80%',
@@ -45,6 +45,10 @@ $("#iframe").fancybox({
         'transitionOut'     : 'elastic',
         'type'              : 'iframe'
     });
+```
+Lien associé au JavaScript ci-dessus:
+```html
+<a id="button" href="fancybox.php?iframe">Open iframe</a>
 ```
 ####Spécifier l'id de l'input à remplir
 ```javascript
