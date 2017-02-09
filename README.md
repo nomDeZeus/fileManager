@@ -9,8 +9,8 @@ Inclure Jquery
 ```
 Inclure Le JS et le CSS de FancyBox
 ```html
-<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css">
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="uploader/fancybox/source/jquery.fancybox.css">
+<script type="text/javascript" src="uploader/fancybox/source/jquery.fancybox.pack.js"></script>
 ```
 Inclure le script du file manager
 ```html

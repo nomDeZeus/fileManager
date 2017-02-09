@@ -48,7 +48,7 @@ ul li{
     vertical-align: top;
     color: #c6a668;
     text-align: center;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Dancing Script';
 }
 
 #icone
@@ -68,7 +68,7 @@ ul li{
 }
 
 body {
-    font-family: cursive, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857;
     color: #fff;
@@ -83,7 +83,7 @@ body {
     border-radius: 10px;
     position: relative;
     font-size: 0.8em;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico';
 }
 
 #drop-zone {
