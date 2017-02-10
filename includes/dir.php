@@ -7,15 +7,15 @@
  */
 
 
-function dir_is_valid($requestedDir, $baseDir){
+function dir_is_valid($dir){
     require 'const.php';
-    $requestedDir=$uploadDir.'/'.$requestedDir;
-    $currentDir = realpath($requestedDir);
-    if($currentDir == false || strpos($currentDir, $baseDir) !== 0){
+    $baseDir = realpath($uploadDir);
+    $realDir = realpath($uploadDir.'/'.$dir);
+    if($realDir == false || strpos($realDir, $baseDir) !== 0){
         echo 'Directory traversal';
         return false;
     }
-    return $currentDir;
+    return true;
 }
 function getRelativePath($from, $to)
 {

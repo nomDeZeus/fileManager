@@ -34,7 +34,24 @@ if(!isset($_POST['dirname'])) {
     </form>
 <?php
 } else{
-    $dirname = filter_input(INPUT_POST, 'dirname', FILTER_SANITIZE_MAGIC_QUOTES);
+    $newDir = filter_input(INPUT_POST, 'dirname', FILTER_SANITIZE_MAGIC_QUOTES);
+    if($newDir === null or $newDir === false){
+        exit;
+    }
+    $currentDir = filter_input(INPUT_POST, 'dir', FILTER_SANITIZE_MAGIC_QUOTES);
+    $baseDir = realpath($uploadDir);
+
+    $newPath = $baseDir.'/'.$currentDir.$newDir;
+    set_error_handler(function() { echo 'Erreur lors de la creation.'; exit; });
+    $create = mkdir($newPath);
+    restore_error_handler();
+
+    if (!dir_is_valid($currentDir.$newDir)){
+        rmdir($newPath);
+        exit;
+    }
+
+    /*$dirname = filter_input(INPUT_POST, 'dirname', FILTER_SANITIZE_MAGIC_QUOTES);
     if($dirname === null or $dirname === false){
         exit;
     }
@@ -43,23 +60,23 @@ if(!isset($_POST['dirname'])) {
     }
 
     $baseDir = realpath($uploadDir);
-    $requestedDir = (isset($_POST['dir'])?$_POST['dir']:'');
-    if(!($currentDir = dir_is_valid($requestedDir, $baseDir))){
+    $requestedDir = getRelativePath($baseDir, realpath($uploadDir.'/'.$dirname));
+    $currentDir = realpath($uploadDir.'/'.$requestedDir);
+    if(!(dir_is_valid($requestedDir))){
         exit;
     }
-    set_error_handler(function() { /* ignore errors */echo 'Erreur lors de la creation. Verifiez les doublons'; exit; });
+    set_error_handler(function() { echo 'Erreur lors de la creation. Verifiez les doublons'; exit; });
     $create = mkdir($currentDir.'/'.$dirname);
     restore_error_handler();
 
     if(strpos(realpath($currentDir.'/'.$dirname), $baseDir) !== 0){
-        echo 'Erreur lors de la creation. Verifiez les doublons';
+        echo 'Erreur lors de la creation. Verifiez le nom';
         unlink($currentDir.'/'.$dirname);
         exit;
     }
-
+*/
     ?>
     <script type="text/javascript">
-        //parent.$.fancybox.close();
         parent.closeAndRefresh();
     </script>
 <?php

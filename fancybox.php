@@ -19,9 +19,13 @@ function pathFromUploadRoot($pathArray, $index){
 }
 $baseDir = realpath($uploadDir);
 $requestedDir = (isset($_GET['dir'])?$_GET['dir']:'');
-if(!($currentDir = dir_is_valid($requestedDir, $baseDir))){
+$requestedDir = getRelativePath($baseDir, realpath($uploadDir.'/'.$requestedDir));
+$currentDir = realpath($uploadDir.'/'.$requestedDir);
+if(!(dir_is_valid($requestedDir))){
     exit;
 }
+
+
 $arr = explode(realpath($uploadDir), $currentDir);
 $printed = ($arr[1] == '')?'.':$arr[1];
 $explodedPath = explode('/', $printed);
@@ -94,8 +98,10 @@ if($baseDir === $currentDir){
                 foreach ($dirs as $dir){
                     ?>
             <li>
-                <a href="delete.php?dir=<?php echo $printed ?>&dirname=<?php echo $dir ?>" class="boxclose"></a>
-                <a href="./fancybox.php?dir=<?php echo $printed.'/'.$dir; ?>" title="<?php echo $dir; ?>" data-path="<?php echo $uploadDir.'/'.substr(getRelativePath($baseDir, $currentDir.'/'.$dir), 2); ?>">
+                <?php if($dir != '..'){ ?>
+                <a href="delete.php?dir=<?php echo $printed.'/'.$dir; ?>" class="boxclose"></a>
+                <?php } ?>
+                <a href="./fancybox.php?dir=<?php echo str_replace(realpath($baseDir), '', realpath($uploadDir.'/'.$printed.'/'.$dir)); ?>" title="<?php echo $dir; ?>" data-path="<?php echo $uploadDir.'/'.substr(getRelativePath($baseDir, $currentDir.'/'.$dir), 2); ?>">
                     <div class="<?php if($dir == '..') echo 'parent';else echo (is_dir($currentDir.'/'.$dir)?'dir':'file'); ?>"></div>
                     <div class="descr-ico"><?php echo ($dir == '..')?'parent':$dir; ?>
                     </div>
@@ -143,8 +149,7 @@ $(document).ready(function() {
             method: 'get',
             url: 'delete.php',
             data: {
-                'dir': getURLParameter($(this).attr('href'), 'dir'),
-                'dirname': getURLParameter($(this).attr('href'), 'dirname')
+                'dir': getURLParameter($(this).attr('href'), 'dir')
             }
         }
         ).done(function () {
